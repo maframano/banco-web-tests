@@ -1,5 +1,5 @@
 describe('Login', () => {
-  it('Login com dados validos devem permitir entradas no sistemas', () => {
+  it.only('Login com dados validos devem permitir entradas no sistemas', () => {
     //Arrange
     cy.visit('/')
 
@@ -10,13 +10,13 @@ describe('Login', () => {
     cy.get('#login-section > .btn').click()
 
     //Assert
-       /*procure um h4 que tenha o texto realizar transferencia e quando
+       /*procure um h4 que tenha o texto Realizar Transferência e quando
        encontrar, ele deve estar visivel*/
     cy.contains('h4' , 'Realizar Transferência').should('be.visible')
   })
 
   //teste negativo
-  it.only('Login com dados invalidos devem apresentar mensagem de erro', () => {
+  it('Login com dados invalidos devem apresentar mensagem de erro', () => {
     //Arrange
     cy.visit('/')
 
