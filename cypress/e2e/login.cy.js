@@ -11,7 +11,7 @@ describe('Login', () => {
     cy.get('#login-section > .btn').click()
 
     //Assert
-       /*procure um h4 que tenha o texto realizar transferencia e quando
+       /*procure um h4 que tenha o texto Realizar Transferência e quando
        encontrar, ele deve estar visivel*/
     cy.contains('h4' , 'Realizar Transferência').should('be.visible')
   })
