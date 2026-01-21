@@ -1,8 +1,9 @@
 describe('Login', () => {
-  it.only('Login com dados validos devem permitir entradas no sistemas', () => {
-    //Arrange
+  beforeEach(() => {
+      //Arrange
     cy.visit('/')
-
+  })
+  it('Login com dados validos devem permitir entradas no sistemas', () => {
     // Act
     cy.get('#username').click().type('julio.lima')
     //cy.get('#username').type('julio.lima')
@@ -16,10 +17,7 @@ describe('Login', () => {
   })
 
   //teste negativo
-  it('Login com dados invalidos devem apresentar mensagem de erro', () => {
-    //Arrange
-    cy.visit('/')
-
+  it.only('Login com dados invalidos devem apresentar mensagem de erro', () => {
     // Act
     cy.get('#username').click().type('julio.lima')
     //cy.get('#username').type('julio.lima')
