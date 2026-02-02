@@ -4,11 +4,13 @@ describe('Login', () => {
     cy.visit('/')
     //cy.screenshot('após visitar pagina')
   })
-  it.only('Login com dados validos devem permitir entradas no sistemas', () => {
+  it('Login com dados validos devem permitir entradas no sistemas', () => {
     // Act
-    cy.get('#username').click().type('julio.lima')
-    //cy.get('#username').type('julio.lima')
-    cy.get('#senha').click().type('123456')
+    cy.fixture('credenciais').then(credenciais =>{
+      cy.get('#username').click().type(credenciais.valida.usuario)
+      //cy.get('#username').type('julio.lima')
+      cy.get('#senha').click().type(credenciais.valida.senha)
+    })  
     //cy.screenshot('após preencher dados validos')
     cy.get('#login-section > .btn').click()
     //cy.screenshot('após clicar no botão entrar')
@@ -22,11 +24,12 @@ describe('Login', () => {
   //teste negativo
   it('Login com dados invalidos devem apresentar mensagem de erro', () => {
     // Act
-    cy.get('#username').click().type('julio.lima')
-    //cy.get('#username').type('julio.lima')
-    cy.get('#senha').click().type('654321')
-    cy.contains('button', 'Entrar').click()
-
+    cy.fixture('credenciais').then(credenciais => {
+      cy.get('#username').click().type(credenciais.invalida.usuario)
+      //cy.get('#username').type('julio.lima')
+      cy.get('#senha').click().type(credenciais.invalida.senha)
+      cy.contains('button', 'Entrar').click()
+    })
     //Assert
        /*procure um h4 que tenha o texto realizar transferencia e quando
        encontrar, ele deve estar visivel*/

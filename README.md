@@ -13,4 +13,4 @@ No package.json, foi alterado no campo text o item
 Assim, quando for rodar os cenarios, nao usara mais npx cypress run e sim
 npm test
  * Para rodar o "cy:headed": "cypress run --headed", usar o comando npm run cy:headed
-  * Para rodar o "cy:open": "cypress open", usar o comando npm run cy:opengit status
+  * Para rodar o "cy:open": "cypress open", usar o comando npm run cy:open git status
