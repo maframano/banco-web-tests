@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "Testes Automatizados do App Web do Banco",
   "main": "index.js",
+  "//": "Este campo é apenas um comentário, ignorado pelo npm",
+ 
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "cy:headed": "cypress run --headed",
+    "cy:open": "cypress open",
+     "//": "ler as alterações do campo test em README.md"
   },
   "repository": {
     "type": "git",
