@@ -1,8 +1,9 @@
 describe('Login', () => {
   beforeEach(() => {
       //Arrange
-    cy.visit('/')
-    //cy.screenshot('após visitar pagina')
+    //cy.visit('/')
+    cy.visit(Cypress.env('URL'))
+    cy.screenshot('após visitar pagina')
   })
   it('Login com dados validos devem permitir entradas no sistemas', () => {
     // Act
@@ -11,9 +12,9 @@ describe('Login', () => {
       //cy.get('#username').type('julio.lima')
       cy.get('#senha').click().type(credenciais.valida.senha)
     })  
-    //cy.screenshot('após preencher dados validos')
+    cy.screenshot('após preencher dados validos')
     cy.get('#login-section > .btn').click()
-    //cy.screenshot('após clicar no botão entrar')
+    cy.screenshot('após clicar no botão entrar')
 
     //Assert
        /*procure um h4 que tenha o texto Realizar Transferência e quando
