@@ -4,7 +4,6 @@
   "description": "Testes Automatizados do App Web do Banco",
   "main": "index.js",
   "//": "Este campo é apenas um comentário, ignorado pelo npm",
- 
   "scripts": {
     "/test": "cypress run --env URL=http://localhost:4000/",
     "test": "cypress run",
@@ -12,7 +11,7 @@
     "test-prod": "cypress run --env URL=http:www.juliodelima.com.br",
     "cy:headed": "cypress run --headed",
     "cy:open": "cypress open",
-     "//": "ler as alterações do campo test em README.md"
+    "//": "ler as alterações do campo test em README.md"
   },
   "repository": {
     "type": "git",
@@ -26,6 +25,7 @@
   },
   "homepage": "https://github.com/maframano/banco-web-tests#readme",
   "devDependencies": {
-    "cypress": "^14.5.1"
+    "cypress": "^14.5.1",
+    "cypress-mochawesome-reporter": "^4.0.2"
   }
 }
