@@ -1,19 +1,13 @@
 describe('Login', () => {
   beforeEach(() => {
       //Arrange
-    //cy.visit('/')
-    cy.visit(Cypress.env('URL'))
+    cy.visit('/')
+    //cy.visit(Cypress.env('URL'))
     cy.screenshot('após visitar pagina')
   })
   it('Login com dados validos devem permitir entradas no sistemas', () => {
     // Act
-    cy.fixture('credenciais').then(credenciais =>{
-      cy.get('#username').click().type(credenciais.valida.usuario)
-      //cy.get('#username').type('julio.lima')
-      cy.get('#senha').click().type(credenciais.valida.senha)
-    })  
-    cy.screenshot('após preencher dados validos')
-    cy.get('#login-section > .btn').click()
+    cy.FazerLoginComCredenciaisValidas()
     cy.screenshot('após clicar no botão entrar')
 
     //Assert
@@ -34,7 +28,9 @@ describe('Login', () => {
     //Assert
        /*procure um h4 que tenha o texto realizar transferencia e quando
        encontrar, ele deve estar visivel*/
-    cy.get('.toast').should('have.text', 'Erro no login. Tente novamente.')
+    //cy.get('.toast').should('have.text', 'Erro no login. Tente novamente.')
+    cy.VerificarMensagemNoToast('Erro no login. Tente novamente.')//função no arquivo common.js
     //cy.get('.toast').should('have.text', 'Sucess')- teste para aparecer os screenshots
+
   })
 })

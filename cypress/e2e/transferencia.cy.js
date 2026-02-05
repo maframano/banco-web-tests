@@ -1,25 +1,39 @@
 describe('Transferencias', () => {
     beforeEach(() => {
       cy.visit('/')
-      cy.fixture('credenciais').then(credenciais =>{
-         cy.get('#username').click().type(credenciais.valida.usuario)
-         cy.get('#senha').click().type(credenciais.valida.senha)
-      })  
-      cy.get('#login-section > .btn').click()   
+      cy.FazerLoginComCredenciaisValidas(0) 
     })
     it('Deve transferir quando informo dados e valores validos', () => {
-      cy.get('label[for="conta-origem"]').parent().as('campo-conta-origem')
+      //act
+
+      /*cy.get('label[for="conta-origem"]').parent().as('campo-conta-origem')
       cy.get('@campo-conta-origem').click()
-      cy.get('@campo-conta-origem').contains('João da Silva com saldo de R$ 15011.00 (Ativa)').click()
+      cy.get('@campo-conta-origem').contains('João da Silva').click()
+      Substituido pela linha abaixo*/
+      cy.SelecionarOpçãoNaComboBox('conta-origem' , 'João da Silva')
 
-      cy.get('label[for="conta-destino"]').parent().as('campo-conta-destino')
+      /*cy.get('label[for="conta-destino"]').parent().as('campo-conta-destino')
       cy.get('@campo-conta-destino').click()
-      cy.get('@campo-conta-destino').contains('Maria Oliveira com saldo de R$ 22989git .00 (Ativa)').click()
-
+      cy.get('@campo-conta-destino').contains('Maria Oliveira').click()
+      Substituido pela função SelecionarOpçãoNaComboBox abaixo*/
+      cy.SelecionarOpçãoNaComboBox('conta-destino' , 'Maria Oliveira')
       cy.get('#valor').click().type('11')
       cy.contains('button', 'Transferir').click()
-
-      cy.get('.toast').should('have.text', 'Transferência realizada!')
+      //Assert
+      //cy.get('.toast').should('have.text', 'Transferência realizada!')
+      cy.VerificarMensagemNoToast('Transferência realizada!')
     })
+
+   it.only('Deve dar erro quando tentar transferir mais que 5000,00 sem token', () => {
+     /* cy.SelecionarOpçãoNaComboBox('conta-origem' , 'João da Silva')
+      cy.SelecionarOpçãoNaComboBox('conta-destino' , 'Maria Oliveira')
+      cy.get('#valor').click().type('5000.01')
+      cy.contains('button', 'Transferir').click()
+     Substituido pela função RealizarTransferencia abaixo*/
+      //Act
+      cy.RealizarTransferencia('João da Silva', 'Maria Oliveira', '5000.01')
+      //Assert
+      cy.VerificarMensagemNoToast('Autenticação necessária para transferências acima de R$5.000,00.')
+    }) 
 
 })
